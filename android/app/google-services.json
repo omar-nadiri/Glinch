@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "873375556372",
+    "project_id": "glitch-296f8",
+    "storage_bucket": "glitch-296f8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873375556372:android:9ffafcc76dc3eb77eed801",
+        "android_client_info": {
+          "package_name": "com.example.glinch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873375556372-g46apqnis12pfgkeu51kb36ubvf61f2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.glinch",
+            "certificate_hash": "7bb49272800e7926d07314df2dcbad03df270a5b"
+          }
+        },
+        {
+          "client_id": "873375556372-e7jtjql9d05s33t133b0fudplgodv3ol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR8jBdYx8WdrvddTXqQCg2mqxf3NfmoZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873375556372-e7jtjql9d05s33t133b0fudplgodv3ol.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "873375556372-m8q4m87d3eebpltmsn6g70echq3htv21.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.glinch"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
