@@ -13,7 +13,7 @@ CustomColors lightCustomColors = const CustomColors(
   brandColorRedShare100: Color.fromRGBO(249, 212, 212, 1),
   brandColorGrayShade100: Color.fromRGBO(230, 231, 231, 1),
   brandColorGrey: Color.fromRGBO(132, 134, 136, 1),
-  brandColorRed: Color.fromRGBO(224, 38, 41, 1),
+  brandColorRed: Color.fromRGBO(155, 41, 72, 1),
   brandColorWhiteShade100: Color.fromRGBO(230, 230, 230, 1),
   statusColorInfo100: Color.fromRGBO(224, 231, 241, 1),
   statusColorAlertBase: Color.fromRGBO(226, 40, 32, 1),
