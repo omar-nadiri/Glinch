@@ -1,11 +1,11 @@
 import 'dart:developer';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:glinch/src/commons/widgets/default_icon_button.dart';
 import 'package:glinch/src/extensions/general.dart';
-import 'package:glinch/src/router/app_router.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lottie/lottie.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -18,6 +18,29 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  void signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    await FirebaseAuth.instance.signInWithCredential(credential).then((_) {
+      if (mounted) {
+        context.go('/home');
+      }
+    });
+  }
+
+  Future<bool> signOutFromGoogle() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      return true;
+    } on Exception catch (_) {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +73,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   child: Lottie.asset('assets/animation/wine.json')),
               DefaultIconButton(
                 text: 'Sign in to get started',
-                onPress: () {
-                  context.go('/home');
+                onPress: () async {
+                  signInWithGoogle();
                 },
-                icon:   SizedBox(
+                icon: SizedBox(
                   width: 25,
                   height: 25,
                   child: SvgPicture.asset('assets/svg/google.svg'),

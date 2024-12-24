@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glinch/src/features/auth/presentation/pages/auth_screen.dart';
 import 'package:glinch/src/features/details/presentation/pages/details_screen.dart';
 import 'package:glinch/src/features/home/presentation/pages/home_screen.dart';
+import 'package:glinch/src/features/quotes/presentation/pages/quotes_screen.dart';
 import 'package:glinch/src/features/saved/presentation/pages/saved_screen.dart';
 import 'package:glinch/src/features/search/presentation/pages/search_screen.dart';
 import 'package:glinch/src/router/routes/scaffold_nested_navigation.dart';
@@ -9,7 +10,7 @@ import 'package:go_router/go_router.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorHomeKey = GlobalKey<NavigatorState>(debugLabel: 'home');
-final _shellNavigatorPaymentsKey = GlobalKey<NavigatorState>(debugLabel: 'search');
+final _shellNavigatorPaymentsKey = GlobalKey<NavigatorState>(debugLabel: 'quotes');
 final _shellNavigatorManageKey = GlobalKey<NavigatorState>(debugLabel: 'saved');
 
 final goRouter = GoRouter(
@@ -22,6 +23,17 @@ final goRouter = GoRouter(
       pageBuilder: (context, state) => const NoTransitionPage(
         child: AuthScreen(),
       ),
+    ),
+    GoRoute(
+      path: '/cocktail_details',
+      name: 'cocktail_details',
+      parentNavigatorKey: rootNavigatorKey,
+      builder: (BuildContext context, GoRouterState state) {
+        final String cocktailId = state.uri.queryParameters['cocktailId'] ?? '';
+        return DetailsScreen(
+          cocktailId: cocktailId,
+        );
+      },
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
@@ -41,12 +53,13 @@ final goRouter = GoRouter(
                 child: HomeScreen(),
               ),
               routes: [
+
                 GoRoute(
-                  path: '/cocktail_details',
-                  name: 'cocktail_details',
+                  path: '/cocktail_search',
+                  name: 'cocktail_search',
                   parentNavigatorKey: rootNavigatorKey,
                   builder: (BuildContext context, GoRouterState state) {
-                    return const DetailsScreen();
+                    return const SearchScreen();
                   },
                 ),
               ],
@@ -59,10 +72,10 @@ final goRouter = GoRouter(
           navigatorKey: _shellNavigatorPaymentsKey,
           routes: [
             GoRoute(
-              path: '/search',
-              name: 'search',
+              path: '/quotes',
+              name: 'quotes',
               pageBuilder: (context, state) => const NoTransitionPage(
-                child: SearchScreen(),
+                child: QuotesScreen(),
               ),
               routes: [],
             ),

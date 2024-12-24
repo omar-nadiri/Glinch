@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class CustomNetworkImage extends StatelessWidget {
-  const CustomNetworkImage({super.key});
+  const CustomNetworkImage({
+    required this.image,
+    super.key,
+  });
+
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     return Image.network(
-      "https://www.thecocktaildb.com//images/media/drink/vrwquq1478252802.jpg",
+      image,
       loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
         final totalBytes = loadingProgress?.expectedTotalBytes;
         final bytesLoaded = loadingProgress?.cumulativeBytesLoaded;
         if (totalBytes != null && bytesLoaded != null) {
-          return CircularProgressIndicator(
-            backgroundColor: Colors.white70,
-            value: bytesLoaded / totalBytes,
-            color: Colors.blue[900],
-            strokeWidth: 5.0,
+          return SizedBox(
+            height: 50,
+            child: Lottie.asset('assets/animation/wine_loader.json'),
           );
         } else {
           return child;
         }
       },
-      frameBuilder: (BuildContext context, Widget child, int? frame, bool wasSynchronouslyLoaded) {
+      frameBuilder: (BuildContext context, Widget child, int? frame,
+          bool wasSynchronouslyLoaded) {
         if (wasSynchronouslyLoaded) {
           return child;
         }
@@ -33,7 +38,8 @@ class CustomNetworkImage extends StatelessWidget {
         );
       },
       fit: BoxFit.cover,
-      errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+      errorBuilder:
+          (BuildContext context, Object exception, StackTrace? stackTrace) {
         return const Text('😢');
       },
     );

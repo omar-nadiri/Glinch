@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:glinch/src/extensions/general.dart';
+import 'package:glinch/src/features/details/domain/model/cocktail_details.dart';
 
 class CocktailSimpleInfo extends StatelessWidget {
-  const CocktailSimpleInfo({super.key});
+  const CocktailSimpleInfo({
+    required this.details,
+    super.key,
+  });
+
+  final CocktailDetails details;
 
   @override
   Widget build(BuildContext context) {
-    return           Container(
+    return Container(
       margin: const EdgeInsets.only(top: 24.0),
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
       decoration: BoxDecoration(
@@ -20,13 +26,13 @@ class CocktailSimpleInfo extends StatelessWidget {
           Column(
             children: [
               Text(
-                'Serving',
+                'Category',
                 style: context.englishTextTheme.headline6.copyWith(
                   color: Colors.black,
                 ),
               ),
               Text(
-                '1',
+                details.category,
                 style: context.englishTextTheme.subTitle.copyWith(
                   color: Colors.black,
                 ),
@@ -36,13 +42,13 @@ class CocktailSimpleInfo extends StatelessWidget {
           Column(
             children: [
               Text(
-                'Preperation ',
+                'Type',
                 style: context.englishTextTheme.headline6.copyWith(
                   color: Colors.black,
                 ),
               ),
               Text(
-                '5 min',
+                details.alcoholic,
                 style: context.englishTextTheme.subTitle.copyWith(
                   color: Colors.black,
                 ),
@@ -52,13 +58,13 @@ class CocktailSimpleInfo extends StatelessWidget {
           Column(
             children: [
               Text(
-                'Cook ',
+                'Glass',
                 style: context.englishTextTheme.headline6.copyWith(
                   color: Colors.black,
                 ),
               ),
               Text(
-                '20 min ',
+                details.glass,
                 style: context.englishTextTheme.subTitle.copyWith(
                   color: Colors.black,
                 ),
